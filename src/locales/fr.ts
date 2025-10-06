@@ -8,7 +8,7 @@ export const fr = {
   },
   hero: {
     title: "Babou Seye",
-    subtitle: "Ingénieur IA spécialisé en RAG, LLM et Computer Vision",
+    subtitle: "Ingénieur IA spécialisé en Gen AI (LLM)",
     description: "Je conçois des systèmes d'IA génératifs et des agents intelligents qui transforment vos données en solutions concrètes.",
   },
   skills: {

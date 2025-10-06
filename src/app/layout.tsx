@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Babou Seye - AI Engineer",
-  description: "AI Engineer specialized in RAG, LLM and Computer Vision",
+  description: "AI Engineer specialized in Gen AI (LLM)",
 };
 
 export default function RootLayout({

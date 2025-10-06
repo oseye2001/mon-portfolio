@@ -10,7 +10,7 @@ export const en: Translations = {
   },
   hero: {
     title: "Babou Seye",
-    subtitle: "AI Engineer specialized in RAG, LLM and Computer Vision",
+    subtitle: "AI Engineer specialized in Gen AI (LLM)",
     description: "I design generative AI systems and intelligent agents that transform your data into concrete solutions.",
   },
   skills: {
