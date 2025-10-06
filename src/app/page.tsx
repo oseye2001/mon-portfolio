@@ -6,10 +6,12 @@ import Formations from "@/components/Formations";
 import FloatingMenu from "@/components/FloatingMenu";
 import Skills from "@/components/Skills";
 import Navbar from "@/components/Navbar";
+import FloatingParticles from "@/components/FloatingParticles";
 
 export default function Home() {
   return (
-    <main className="bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800 text-white">
+    <main className="bg-white text-slate-900 relative">
+  <FloatingParticles />
   <Navbar />
   <Hero />
   <Skills />
@@ -17,7 +19,7 @@ export default function Home() {
   <Projects />
   <Contact />
 
-  {/* Menu fl ottant */}
+  {/* Menu flottant */}
   <FloatingMenu />
     </main>
   );
