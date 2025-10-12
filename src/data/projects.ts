@@ -5,9 +5,9 @@ export const projects = [
     tags: ["GenIA", "Retrieval Augmented Generation"],
     year: 2025,
     context:
-      "Les ingénieurs du support CPS consacrent beaucoup de temps à chercher l’information dans la documentation interne.",
+      "Les ingénieurs du support CPS consacrent beaucoup de temps à chercher l'information dans la documentation interne.",
     objective:
-      "Accélérer l’accès à l’information et augmenter la productivité des équipes.",
+      "Accélérer l'accès à l'information et augmenter la productivité des équipes.",
     solution:
       "Combinaison de recherche lexicale (BM25) et sémantique, puis génération de réponses contextualisées par LLaMA-3.2-3B via LlamaCPP.",
     technologies: [
@@ -22,6 +22,32 @@ export const projects = [
       "pymupdf",
       "RecursiveCharacterTextSplitter",
       "BERT"
+    ]
+  },
+  {
+    title: "RAG Chat System - Application Full-Stack de Chat Intelligent",
+    organization: "Projet personnel",
+    tags: ["GenIA", "RAG", "Full-Stack"],
+    year: 2025,
+    link: "https://github.com/Babou001/projects_RAG_CHAT_SYSTEM",
+    context:
+      "Démonstration d'un système RAG complet avec support multi-modèles pour l'interaction intelligente avec des documents.",
+    objective:
+      "Créer une application de chat permettant d'interroger des documents PDF avec des réponses contextualisées et sourcées.",
+    solution:
+      "Application Full-Stack avec Next.js, FastAPI, Milvus pour la recherche vectorielle, et support de multiples LLMs (OpenAI, Anthropic, Llama local). Modes RAG et chat direct avec streaming temps-réel.",
+    technologies: [
+      "Next.js",
+      "React",
+      "FastAPI",
+      "Milvus",
+      "HuggingFace",
+      "OpenAI",
+      "Anthropic",
+      "Llama",
+      "PyMuPDF",
+      "Docker",
+      "Tailwind CSS"
     ]
   },
   {
