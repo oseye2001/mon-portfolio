@@ -127,6 +127,32 @@ export const fr = {
         ],
       },
       {
+        title: "RAG Chat System - Application Full-Stack de Chat Intelligent",
+        organization: "Projet personnel",
+        tags: ["GenIA", "RAG", "Full-Stack"],
+        year: 2025,
+        link: "https://github.com/Babou001/projects_RAG_CHAT_SYSTEM",
+        context:
+          "Démonstration d'un système RAG complet avec support multi-modèles pour l'interaction intelligente avec des documents.",
+        objective:
+          "Créer une application de chat permettant d'interroger des documents PDF avec des réponses contextualisées et sourcées.",
+        solution:
+          "Application Full-Stack avec Next.js, FastAPI, Milvus pour la recherche vectorielle, et support de multiples LLMs (OpenAI, Anthropic, Llama local). Modes RAG et chat direct avec streaming temps-réel.",
+        technologies: [
+          "Next.js",
+          "React",
+          "FastAPI",
+          "Milvus",
+          "HuggingFace",
+          "OpenAI",
+          "Anthropic",
+          "Llama",
+          "PyMuPDF",
+          "Docker",
+          "Tailwind CSS",
+        ],
+      },
+      {
         title: "Classification des attitudes sociales à partir de données temporelles",
         organization: "LIS-Lab – CNRS",
         tags: ["Recherche", "Interprétabilité"],
