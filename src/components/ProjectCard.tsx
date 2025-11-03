@@ -13,7 +13,16 @@ export type Project = {
   status?: string;
 };
 
-export default function ProjectCard({ p, dict }: { p: Project; dict: any }) {
+export type ProjectsDict = {
+  title: string;         // "Mes projets" / "My Projects"
+  context: string;       // label
+  objective: string;     // label
+  solution: string;      // label
+  confidential?: string; // facultatif
+  viewProject?: string;  // facultatif
+};
+
+export default function ProjectCard({ p, dict }: { p: Project; dict: ProjectsDict }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
