@@ -3,8 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { fr } from "@/locales/fr";
-import { en } from "@/locales/en";
+
 type Lang = "fr" | "en";
 
 export default function Navbar() {
