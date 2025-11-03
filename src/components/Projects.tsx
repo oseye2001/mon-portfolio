@@ -42,6 +42,7 @@ export default function Projects() {
     return () => window.removeEventListener("app:language-changed", handler as EventListener);
   }, []);
 
+  // ✅ ICI on utilise bien `t`, donc plus d’erreur "assigned but never used"
   const t = useMemo(() => (lang === "en" ? en : fr), [lang]);
   const dict = t.projects as ProjectsSection;
 
