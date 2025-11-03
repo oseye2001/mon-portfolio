@@ -10,7 +10,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [lang, setLang] = useState<Lang>("fr");
 
-  // Init from localStorage
   useEffect(() => {
     const saved = (typeof window !== "undefined" && localStorage.getItem("lang")) as Lang | null;
     const initial = saved === "en" || saved === "fr" ? saved : "fr";
@@ -18,7 +17,6 @@ export default function Navbar() {
     if (typeof document !== "undefined") document.documentElement.lang = initial;
   }, []);
 
-  // Persist + notify others
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("lang", lang);
@@ -73,7 +71,6 @@ export default function Navbar() {
           {T.brand}
         </Link>
 
-        {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
           <ul className="flex gap-6">
             {T.links.map(({ href, label }) => (
@@ -85,7 +82,6 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* FR/EN pill */}
           <button
             type="button"
             onClick={toggleLang}
@@ -103,7 +99,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -116,7 +111,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile panel */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
@@ -137,7 +131,6 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* FR/EN in mobile */}
             <div className="pt-2">
               <button
                 type="button"
@@ -149,13 +142,9 @@ export default function Navbar() {
                 className="inline-flex items-center rounded-full p-1 text-xs font-semibold transition shadow ring-1
                            bg-white/90 text-slate-800 ring-slate-200 hover:bg-white"
               >
-                <span className={`px-2.5 py-1 rounded-full ${!isEN ? "bg-indigo-600 text-white" : "text-slate-700"}`}>
-                  {T.left}
-                </span>
+                <span className={`px-2.5 py-1 rounded-full ${!isEN ? "bg-indigo-600 text-white" : "text-slate-700"}`}>FR</span>
                 <span className="px-1">/</span>
-                <span className={`px-2.5 py-1 rounded-full ${isEN ? "bg-indigo-600 text-white" : "text-slate-700"}`}>
-                  {T.right}
-                </span>
+                <span className={`px-2.5 py-1 rounded-full ${isEN ? "bg-indigo-600 text-white" : "text-slate-700"}`}>EN</span>
               </button>
             </div>
           </motion.div>
