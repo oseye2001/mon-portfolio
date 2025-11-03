@@ -1,95 +1,100 @@
 "use client";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Code2, Globe2, ShieldCheck, Wrench, Sparkles } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageProvider";
+import { Code2, Globe, ShieldCheck, Wrench, Sparkles } from "lucide-react";
 
-type SkillCategory = {
-  titleKey: "software" | "fullStack" | "systems" | "tools" | "softSkills";
-  icon: React.ElementType;
-  itemsKey: "software" | "fullStack" | "systems" | "tools" | "softSkills";
-};
+import { fr } from "@/locales/fr";
+import { en } from "@/locales/en";
 
-const categories: SkillCategory[] = [
-  {
-    titleKey: "software",
-    icon: Code2,
-    itemsKey: "software",
-  },
-  {
-    titleKey: "fullStack",
-    icon: Globe2,
-    itemsKey: "fullStack",
-  },
-  {
-    titleKey: "systems",
-    icon: ShieldCheck,
-    itemsKey: "systems",
-  },
-  {
-    titleKey: "tools",
-    icon: Wrench,
-    itemsKey: "tools",
-  },
-  {
-    titleKey: "softSkills",
-    icon: Sparkles,
-    itemsKey: "softSkills",
-  },
-];
+type Lang = "fr" | "en";
 
 export default function Skills() {
-  const { t } = useLanguage();
+  const [lang, setLang] = useState<Lang>("fr");
+
+  // Lire la langue au montage
+  useEffect(() => {
+    const saved = (typeof window !== "undefined" && localStorage.getItem("lang")) as Lang | null;
+    const initial = saved === "en" || saved === "fr" ? saved : "fr";
+    setLang(initial);
+    if (typeof document !== "undefined") document.documentElement.lang = initial;
+  }, []);
+
+  // Écouter les changements envoyés par la Navbar
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { lang?: Lang } | undefined;
+      if (detail?.lang === "en" || detail?.lang === "fr") {
+        setLang(detail.lang);
+        if (typeof document !== "undefined") document.documentElement.lang = detail.lang;
+      }
+    };
+    window.addEventListener("app:language-changed", handler as EventListener);
+    return () => window.removeEventListener("app:language-changed", handler as EventListener);
+  }, []);
+
+  const t = useMemo(() => (lang === "en" ? en : fr), [lang]);
+
+  // Mapping catégories -> icônes + libellés + items depuis les locales
+  const categories = useMemo(
+    () => [
+      {
+        title: t.skills.software,
+        icon: Code2,
+        items: t.skills.items.software,
+      },
+      {
+        title: t.skills.fullStack,
+        icon: Globe,
+        items: t.skills.items.fullStack,
+      },
+      {
+        title: t.skills.systems,
+        icon: ShieldCheck,
+        items: t.skills.items.systems,
+      },
+      {
+        title: t.skills.tools,
+        icon: Wrench,
+        items: t.skills.items.tools,
+      },
+      {
+        title: t.skills.softSkills,
+        icon: Sparkles,
+        items: t.skills.items.softSkills,
+      },
+    ],
+    [t]
+  );
 
   return (
-    <section id="skills" className="container mx-auto py-20 bg-slate-50 relative z-10">
-      <h2 className="text-3xl font-bold mb-12 text-center text-slate-900">
-        {t.skills.title}
-      </h2>
+    <section id="skills" className="container mx-auto py-20">
+      <h2 className="text-3xl font-bold mb-12 text-center">{t.skills.title}</h2>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
-        {categories.map(({ titleKey, icon: Icon, itemsKey }, index) => (
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {categories.map(({ title, icon: Icon, items }) => (
           <motion.div
-            key={titleKey}
+            key={title}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            whileHover={{
-              scale: 1.03,
-              rotate: [0, -1, 1, 0],
-              transition: { duration: 0.3 },
-            }}
-            className="relative overflow-hidden rounded-2xl p-6 border border-slate-200 bg-white shadow-lg hover:shadow-2xl transition-all group"
+            transition={{ duration: 0.4 }}
+            whileHover={{ scale: 1.03 }}
+            className="relative overflow-hidden rounded-2xl p-6 border border-white/10 bg-white/5 backdrop-blur-lg shadow-xl"
           >
             {/* halo décoratif */}
             <motion.div
-              className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-blue-100/50 blur-2xl group-hover:bg-violet-100/50 transition-colors duration-300"
+              layoutId="halo"
+              className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-indigo-700/30 blur-2xl"
             />
-            <motion.div
-              className="relative z-10 flex items-center gap-3 mb-4"
-              whileHover={{ x: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
-                <Icon className="w-6 h-6 text-blue-600 group-hover:text-violet-600 transition-colors" />
-              </motion.div>
-              <h3 className="text-lg font-semibold text-slate-900">
-                {t.skills[titleKey]}
-              </h3>
-            </motion.div>
 
-            <ul className="relative z-10 ml-2 list-disc list-inside space-y-1 text-sm text-slate-700">
-              {t.skills.items[itemsKey].map((item: string, i: number) => (
-                <motion.li
-                  key={`${titleKey}-${item}-${i}`}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 + i * 0.05 }}
-                  whileHover={{ x: 5, color: "#2563eb" }}
-                >
-                  {item}
-                </motion.li>
+            <div className="relative z-10 flex items-center gap-3 mb-4">
+              <Icon className="w-6 h-6 text-indigo-400" />
+              <h3 className="text-lg font-semibold">{title}</h3>
+            </div>
+
+            <ul className="relative z-10 ml-2 list-disc list-inside space-y-1 text-sm text-gray-300">
+              {items.map((it) => (
+                <li key={it}>{it}</li>
               ))}
             </ul>
           </motion.div>
