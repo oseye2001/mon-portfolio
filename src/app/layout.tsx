@@ -1,7 +1,7 @@
+// src/app/layout.tsx
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/contexts/LanguageProvider";
-import type { Metadata } from "next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,25 +14,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "El Hadji Ousmane Seye",
-  description:
-    "Junior Full-Stack Developer, motivated and passionate about web development, I am building my first projects to strengthen my skills from Front-End to Back-End.",
-}
-
+  title: "Portfolio - El Hadji Ousmane Seye",
+  description: "Portfolio Full-Stack & IA - FR/EN",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  // Lang par défaut côté serveur. Tes composants peuvent ensuite
+  // mettre à jour document.documentElement.lang côté client.
   return (
-    <html lang="fr">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+    <html lang="fr" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );
