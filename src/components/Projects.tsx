@@ -2,14 +2,27 @@
 import { useEffect, useMemo, useState } from "react";
 import { fr } from "@/locales/fr";
 import { en } from "@/locales/en";
-import ProjectCard, { Project } from "./ProjectCard";
+import ProjectCard, { Project, ProjectsDict } from "./ProjectCard";
 
 type Lang = "fr" | "en";
+
+type ProjectLocale = {
+  title: string;
+  organization: string;
+  tags?: string[];
+  year: number;
+  context: string;
+  objective: string;
+  solution: string;
+  technologies?: string[];
+  status?: string;
+};
+
+type ProjectsSection = ProjectsDict & { projects: ProjectLocale[] };
 
 export default function Projects() {
   const [lang, setLang] = useState<Lang>("fr");
 
-  // Lire langue au montage
   useEffect(() => {
     const saved = (typeof window !== "undefined" && localStorage.getItem("lang")) as Lang | null;
     const initial = saved === "en" || saved === "fr" ? saved : "fr";
@@ -17,7 +30,6 @@ export default function Projects() {
     if (typeof document !== "undefined") document.documentElement.lang = initial;
   }, []);
 
-  // Écouter Navbar (événement global)
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail as { lang?: Lang } | undefined;
@@ -31,22 +43,22 @@ export default function Projects() {
   }, []);
 
   const t = useMemo(() => (lang === "en" ? en : fr), [lang]);
-  const dict = t.projects;
+  const dict = t.projects as ProjectsSection;
 
   const projects: Project[] = useMemo(
     () =>
-      (t.projects.projects || []).map((p: any) => ({
+      (dict.projects || []).map((p: ProjectLocale) => ({
         title: p.title,
         organization: p.organization,
-        tags: p.tags || [],
+        tags: p.tags ?? [],
         year: p.year,
         context: p.context,
         objective: p.objective,
         solution: p.solution,
-        technologies: p.technologies || [],
+        technologies: p.technologies ?? [],
         status: p.status,
       })),
-    [t]
+    [dict]
   );
 
   return (
