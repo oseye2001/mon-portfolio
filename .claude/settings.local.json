@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nRefonte UI + i18n FR/EN + animations élégantes\n\n- Nouvelle palette Tech Blue (fond blanc, accents bleu/violet)\n- Hero professionnel avec effet typing machine à écrire\n- Système i18n complet FR/EN avec sélecteur de langue\n- Animations subtiles : particules flottantes, hover élégants\n- Badges confidentiels pour projets entreprise\n- Fix hydratation SSR (layout + fonts)\n- Amélioration accessibilité et UX\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git rebase:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAjout du projet RAG Chat System au portfolio\n\n- Nouveau projet personnel : RAG Chat System\n- Application Full-Stack avec Next.js + FastAPI\n- Support multi-modèles (OpenAI, Anthropic, Llama)\n- Lien GitHub : https://github.com/Babou001/projects_RAG_CHAT_SYSTEM\n- Technologies : Milvus, HuggingFace, Docker, etc.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

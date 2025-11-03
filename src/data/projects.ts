@@ -1,153 +1,99 @@
 export const projects = [
   {
-    title: "Système de recherche de documents avec chatbot RAG intégré",
-    organization: "IDEMIA France SAS",
-    tags: ["GenIA", "Retrieval Augmented Generation"],
-    year: 2025,
-    context:
-      "Les ingénieurs du support CPS consacrent beaucoup de temps à chercher l'information dans la documentation interne.",
-    objective:
-      "Accélérer l'accès à l'information et augmenter la productivité des équipes.",
-    solution:
-      "Combinaison de recherche lexicale (BM25) et sémantique, puis génération de réponses contextualisées par LLaMA-3.2-3B via LlamaCPP.",
-    technologies: [
-      "Redis",
-      "LangChain",
-      "Chroma DB",
-      "Streamlit",
-      "FastAPI",
-      "Uvicorn",
-      "Docker",
-      "spaCy",
-      "pymupdf",
-      "RecursiveCharacterTextSplitter",
-      "BERT"
-    ]
-  },
-  {
-    title: "RAG Chat System - Application Full-Stack de Chat Intelligent",
+    title: "Plateforme Web de Gestion de Tâches (Full-Stack)",
     organization: "Projet personnel",
-    tags: ["GenIA", "RAG", "Full-Stack"],
+    tags: ["Full-Stack", "Web App"],
     year: 2025,
-    link: "https://github.com/Babou001/projects_RAG_CHAT_SYSTEM",
     context:
-      "Démonstration d'un système RAG complet avec support multi-modèles pour l'interaction intelligente avec des documents.",
+      "Besoin d’une application simple et intuitive pour organiser les tâches, avec accès sécurisé.",
     objective:
-      "Créer une application de chat permettant d'interroger des documents PDF avec des réponses contextualisées et sourcées.",
+      "Développer une application complète (Front + Back + DB) avec authentification et persistance.",
     solution:
-      "Application Full-Stack avec Next.js, FastAPI, Milvus pour la recherche vectorielle, et support de multiples LLMs (OpenAI, Anthropic, Llama local). Modes RAG et chat direct avec streaming temps-réel.",
-    technologies: [
-      "Next.js",
-      "React",
-      "FastAPI",
-      "Milvus",
-      "HuggingFace",
-      "OpenAI",
-      "Anthropic",
-      "Llama",
-      "PyMuPDF",
-      "Docker",
-      "Tailwind CSS"
-    ]
+      "Interface responsive (React) + API REST (Node.js/Express). Authentification JWT, rôles basiques, CRUD tâches, filtres et recherche.",
+    technologies: ["React", "Node.js", "Express", "MySQL", "JWT", "GitHub"]
   },
   {
-    title: "Classification des attitudes sociales à partir de données temporelles",
-    organization: "LIS-Lab – CNRS",
-    tags: ["Recherche", "Interprétabilité"],
-    year: 2024,
+    title: "Système de Classification Autisme – Screening Adultes",
+    organization: "Projet académique (Machine Learning)",
+    tags: ["Machine Learning", "Classification"],
+    year: 2025,
     context:
-      "Analyse de vidéos de confrontations pour détecter les attitudes sociales (colère chaude, froide, conciliante).",
+      "Aider au repérage précoce des traits autistiques chez l’adulte à partir d’un dataset structuré.",
     objective:
-      "Construire des modèles robustes et interprétables pour prédire l’attitude sociale.",
+      "Construire un modèle fiable et interprétable pour distinguer profils neurotypiques et autistes.",
     solution:
-      "Prétraitement, séparation stricte Train/Test, comparaison de SVM, forêts aléatoires, réseaux de neurones ; explications SHAP des features.",
+      "Prétraitement et feature engineering, comparaison Logistic Regression / Random Forest / SVM, validation croisée, matrice de confusion et courbes PR/ROC.",
     technologies: [
+      "Python",
       "Pandas",
       "NumPy",
       "Scikit-Learn",
       "Matplotlib",
-      "Seaborn",
-      "Docker",
-      "OpenSmile",
-      "OpenFace"
+      "Seaborn"
     ]
   },
   {
-    title: "Classification non supervisée des modèles Toyota",
-    organization: "Euranova (Hackathon)",
-    tags: ["Hackathon", "Clustering"],
-    year: 2023,
-    context:
-      "Fiches techniques riches et hétérogènes des véhicules Toyota.",
-    objective:
-      "Regrouper automatiquement les véhicules en grandes familles sans étiquettes pré-existantes.",
-    solution:
-      "Vectorisation mixte (champs numériques + embeddings LLM), clustering hiérarchique K-Means++, visualisation t-SNE.",
-    technologies: [
-      "Scikit-Learn",
-      "spaCy",
-      "Hugging Face LLMs",
-      "Python"
-    ]
-  },
-  {
-    title: "Détection multimodale des tours de parole",
-    organization: "Projet personnel",
-    tags: ["Multimodal", "Speech Segmentation"],
+    title: "Base de Données d’une Bibliothèque Universitaire",
+    organization: "Projet académique – INFO 3114",
+    tags: ["SQL", "Base de données"],
     year: 2024,
     context:
-      "Pré-requis à la transcription structurée « speaker : texte ».",
-    objective: "Délimiter automatiquement les prises de parole.",
+      "Gestion des prêts, des usagers et de l’inventaire d’une bibliothèque universitaire.",
+    objective:
+      "Concevoir et implémenter une base relationnelle robuste et interroger les données efficacement.",
     solution:
-      "Fusion d’embeddings texte BERT et de features audio (MFCC, pitch, énergie) dans un classifieur transformeur; micro-service FastAPI sur AWS.",
-    technologies: [
-      "HuggingFace Transformers",
-      "librosa",
-      "spaCy",
-      "BERT",
-      "FastAPI",
-      "AWS ECS/Fargate"
-    ]
+      "Modélisation MER/UML, schéma SQL normalisé, requêtes CRUD, vues, procédures, index. Jeux de tests et scénarios d’usage.",
+    technologies: ["MySQL", "SQL", "UML/MER", "phpMyAdmin"]
   },
   {
-    title: "Agent IA d’analyse de DataFrames",
-    organization: "LangChain / Pandas",
-    tags: ["Agent IA", "DataFrames"],
+    title: "Simulation d’un Réseau Informatique",
+    organization: "Projet académique – INFO 3221",
+    tags: ["Réseaux", "Cisco"],
+    year: 2024,
+    context:
+      "Comprendre la communication inter-sous-réseaux et la segmentation du trafic.",
+    objective:
+      "Construire une topologie avec routage, VLAN, DHCP et tester la connectivité.",
+    solution:
+      "Configuration routeurs/switches, VLAN, routage statique et inter-VLAN, DHCP, DNS. Débogage de la connectivité (ping, traceroute).",
+    technologies: ["Cisco Packet Tracer", "TCP/IP", "VLAN", "Routage statique"]
+  },
+  {
+    title: "Jeu 2D en C++ — Infographie & Jeux Vidéo",
+    organization: "Projet académique – INFO 4900 (en cours)",
+    tags: ["C++", "POO", "Game Dev"],
     year: 2025,
-    status: "en cours",
     context:
-      "Permettre aux équipes métier d’interroger des jeux de données tabulaires en langage naturel.",
+      "Mettre en pratique la programmation orientée objet et les bases de l’infographie/jeu vidéo vues en cours.",
     objective:
-      "Router dynamiquement la requête utilisateur vers l’outil d’analyse approprié.",
+      "Développer un mini-jeu 2D avec moteur simple, sprites animés et gestion des collisions.",
     solution:
-      "Déclaration d’outils LangChain (query_df, describe_df, plot_df) et routing via ToolSelector ; micro-service FastAPI.",
-    technologies: [
-      "LangChain",
-      "pandas",
-      "pandasql",
-      "Matplotlib",
-      "Python",
-      "FastAPI"
-    ]
+      "Système d’entités (joueur/ennemis), boucle de jeu, gestion des inputs, collisions AABB, états (menu/jeu/fin). Packaging exécutable.",
+    technologies: ["C++", "SFML ou SDL2", "POO", "CMake", "Git"]
   },
   {
-    title: "Détection de déchets par YOLOv8",
+    title: "Boutique E-commerce Full-Stack (Panier + Paiement test)",
     organization: "Projet personnel",
-    tags: ["Computer Vision", "YOLOv8"],
-    year: 2024,
+    tags: ["Full-Stack", "E-commerce"],
+    year: 2025,
     context:
-      "Reconnaître et localiser des types d’ordures pour un usage environnemental.",
+      "Créer une boutique en ligne moderne avec gestion des produits, panier, paiement et tableau de bord admin.",
     objective:
-      "Déployer un service de détection temps-réel sur images ou flux vidéo.",
+      "Concevoir une application prête à déployer : front SEO-friendly, API sécurisée, base SQL, paiements (mode test).",
     solution:
-      "Fine-tune YOLOv8 sur TACO + dataset maison ; API FastAPI ; visualisation Streamlit ; conteneurisation Docker (GPU/CPU).",
+      "Front Next.js (pages produits, recherche, filtre, responsive). Back Node/Express (ou NestJS), PostgreSQL/Prisma, cache Redis. Auth JWT + RBAC (admin/user), checkout Stripe (mode test), dashboard admin (CRUD produits, stocks, commandes).",
     technologies: [
-      "YOLOv8",
-      "OpenCV",
-      "Streamlit",
-      "FastAPI",
-      "Python",
-      "Docker"
+      "Next.js",
+      "React",
+      "Node.js/Express ou NestJS",
+      "PostgreSQL",
+      "Prisma",
+      "Redis",
+      "Stripe (test)",
+      "JWT",
+      "Docker",
+      "GitHub Actions",
+      "Vercel"
     ]
   }
 ];

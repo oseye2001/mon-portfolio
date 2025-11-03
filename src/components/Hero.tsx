@@ -43,7 +43,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Ingénieur IA  |  Data Scientist
+        Developpeur full stack 
       </motion.h3>
       <motion.p
         className="max-w-2xl text-xl md:text-2xl text-slate-700 mb-4 font-medium min-h-[2em]"

@@ -1,9 +1,7 @@
-# 🚀 Portfolio - Babou Seye
+# 🚀 Portfolio – El Hadji Ousmane Seye
 
-Portfolio moderne et élégant d'un Ingénieur IA spécialisé en Gen AI (LLM), développé avec Next.js 15, React 19 et Tailwind CSS.
-
-[![Déployé avec Vercel](https://vercel.com/button)](https://vercel.com)
-
+Portfolio moderne et élégant d’un Junior Full-Stack Developer, développé avec Next.js 15, React 19 et Tailwind CSS.
+Bilingue FR/EN, projets présentés avec contexte / objectif / solution, et section Compétences alignée sur ton parcours (Informatique appliquée).
 ## ✨ Fonctionnalités
 
 ### 🎨 Design moderne
@@ -25,7 +23,17 @@ Portfolio moderne et élégant d'un Ingénieur IA spécialisé en Gen AI (LLM), 
 
 ### 📁 Sections
 1. **Hero** : Introduction avec effet typing
-2. **Skills** : Compétences techniques organisées par catégories (LLM & RAG, Computer Vision, Agents IA, Data Ops)
+2. **Skills** : catégories adaptées à ton profil
+
+Informatique & Développement Logiciel
+
+Développement Web Full-Stack
+
+Systèmes & Sécurité
+
+Outils & Environnement
+
+Qualités (Soft Skills)
 3. **Formations** : Parcours académique détaillé
 4. **Projects** : Projets avec contexte, objectif et solution + badges confidentiels pour projets entreprise
 5. **Contact** : CTA avec email direct
@@ -173,18 +181,14 @@ Les métadonnées sont configurées dans `src/app/layout.tsx` :
 
 ```typescript
 export const metadata: Metadata = {
-  title: "Babou Seye - AI Engineer",
-  description: "AI Engineer specialized in Gen AI (LLM)",
+  title: "ousmane seye - developpeur full stack ",
+  description: "Développeur Full-Stack débutant, motivé et passionné par le développement web, je conçois mes premiers projets afin de renforcer mes compétences du Front-End au Back-End.Je conçois des systèmes d'IA génératifs et des agents intelligents qui transforment vos données en solutions concrètes.",
 };
 ```
 
 ## 🚀 Déploiement
 
-### Vercel (recommandé)
 
-[![Déployer avec Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Babou001/mon-portfolio)
-
-### Autres plateformes
 
 Ce projet Next.js peut être déployé sur :
 - [Netlify](https://www.netlify.com/)
@@ -200,10 +204,10 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 👤 Auteur
 
-**Babou Seye**
-- Email: e.b.seye@gmail.com
+**ousmane seye**
+- Email: nemasou96@gmail.com
 - Portfolio: [En ligne bientôt]
-
+https://github.com/oseye2001/...
 ---
 
 🤖 Développé avec l'aide de [Claude Code](https://claude.com/claude-code)

@@ -14,9 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Babou Seye - AI Engineer",
-  description: "AI Engineer specialized in Gen AI (LLM)",
-};
+  title: "El Hadji Ousmane Seye",
+  description:
+    "Junior Full-Stack Developer, motivated and passionate about web development, I am building my first projects to strengthen my skills from Front-End to Back-End.",
+}
+
 
 export default function RootLayout({
   children,

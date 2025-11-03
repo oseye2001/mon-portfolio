@@ -25,7 +25,7 @@ export default function Navbar() {
           href="#hero"
           className="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent"
         >
-          El hadji Babou
+          El hadji Ousmane 
         </Link>
 
         <div className="flex items-center gap-4">
