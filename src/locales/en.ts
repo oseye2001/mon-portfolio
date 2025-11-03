@@ -1,6 +1,4 @@
-import { Translations } from "./fr";
-
-export const en: Translations = {
+export const en = {
   nav: {
     home: "Home",
     skills: "Skills",
@@ -12,7 +10,7 @@ export const en: Translations = {
     title: "El Hadji Ousmane Seye",
     subtitle: "Junior Full-Stack Developer",
     description:
-      "Junior Full-Stack Developer, motivated and passionate about web development, I am building my first projects to strengthen my skills from Front-End to Back-End.",
+      "Junior Full-Stack Developer, motivated and passionate about web development, I am building my first projects to strengthen my skills from Front-End to Back-End. I design generative AI systems and intelligent agents that transform your data into real solutions.",
   },
   skills: {
     title: "Skills",
@@ -196,7 +194,9 @@ export const en: Translations = {
   },
   contact: {
     title: "Contact",
-    description: "A project, a question? Let's talk!",
-    cta: "Email me",
+    description: "A project or a question? Let's talk!",
+    cta: "Write to me",
   },
 };
+
+export type Translations = typeof en;
