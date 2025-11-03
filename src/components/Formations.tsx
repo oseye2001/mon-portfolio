@@ -1,6 +1,10 @@
 "use client";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageProvider";
+import { fr } from "@/locales/fr";
+import { en } from "@/locales/en";
+
+type Lang = "fr" | "en";
 
 type Formation = {
   degree: string;
@@ -11,8 +15,6 @@ type Formation = {
 };
 
 function FormationCard({ formation }: { formation: Formation }) {
-  const { t } = useLanguage();
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -20,55 +22,87 @@ function FormationCard({ formation }: { formation: Formation }) {
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
       whileHover={{ scale: 1.03 }}
-      className="border border-slate-200 rounded-2xl p-6 bg-white shadow-lg hover:shadow-xl transition-shadow"
+      className="border border-white/10 rounded-2xl p-6 backdrop-blur-lg bg-white/5 shadow-lg"
     >
-      <h3 className="text-lg font-semibold mb-1 text-slate-900">{formation.degree}</h3>
-      <p className="text-sm text-slate-600 italic mb-1">
-        {formation.institution}
-      </p>
-      <p className="text-xs text-blue-600 mb-4 font-medium">{formation.years}</p>
+      <h3 className="text-lg font-semibold mb-1">{formation.degree}</h3>
+      <p className="text-sm text-gray-300 italic mb-1">{formation.institution}</p>
+      <p className="text-xs text-indigo-300 mb-4">{formation.years}</p>
 
-      <p className="text-sm text-slate-700 mb-2">
-        <strong>{t.formations.focus}&nbsp;:</strong> {formation.focus}
+      <p className="text-sm text-gray-300 mb-2">
+        <strong>Focus&nbsp;:</strong> {formation.focus}
       </p>
 
-      {formation.courses && (
+      {formation.courses?.length ? (
         <div className="flex flex-wrap gap-2 mt-2">
           {formation.courses.map((c) => (
             <span
               key={c}
-              className="text-[10px] px-2 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200"
+              className="text-[10px] px-2 py-1 rounded-full bg-slate-700 text-slate-200"
             >
               {c}
             </span>
           ))}
         </div>
-      )}
+      ) : null}
     </motion.div>
   );
 }
 
 export default function Formations() {
-  const { t } = useLanguage();
+  const [lang, setLang] = useState<Lang>("fr");
+
+  // Lire la langue au montage
+  useEffect(() => {
+    const saved = (typeof window !== "undefined" && localStorage.getItem("lang")) as Lang | null;
+    const initial = saved === "en" || saved === "fr" ? saved : "fr";
+    setLang(initial);
+    if (typeof document !== "undefined") document.documentElement.lang = initial;
+  }, []);
+
+  // Écouter la Navbar (event global)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { lang?: Lang } | undefined;
+      if (detail?.lang === "en" || detail?.lang === "fr") {
+        setLang(detail.lang);
+        if (typeof document !== "undefined") document.documentElement.lang = detail.lang;
+      }
+    };
+    window.addEventListener("app:language-changed", handler as EventListener);
+    return () => window.removeEventListener("app:language-changed", handler as EventListener);
+  }, []);
+
+  const t = useMemo(() => (lang === "en" ? en : fr), [lang]);
+
+  // Normaliser les formations depuis les locales vers notre type
+  const formations = useMemo<Formation[]>(
+    () =>
+      (t.formations.formations || []).map((f) => ({
+        degree: f.degree,
+        institution: f.institution,
+        years: f.years,
+        focus: f.focus,
+        courses: f.courses ?? [],
+      })),
+    [t]
+  );
 
   return (
-    <section
-      id="formations"
-      className="relative container mx-auto py-20 bg-white"
-    >
-      {/* Decorative dot grid background */}
+    <section id="formations" className="relative container mx-auto py-20">
+      {/* fond décoratif */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none opacity-10 bg-repeat"
         style={{
           backgroundImage:
-            "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='%230066FF' fill-opacity='0.3'%3e%3ccircle cx='2' cy='2' r='2'/%3e%3c/svg%3e\")",
+            "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='%23667B9A' fill-opacity='0.3'%3e%3ccircle cx='2' cy='2' r='2'/%3e%3c/svg%3e\")",
         }}
       />
-      <h2 className="text-3xl font-bold mb-8 text-center text-slate-900">{t.formations.title}</h2>
+
+      <h2 className="text-3xl font-bold mb-8 text-center">{t.formations.title}</h2>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {t.formations.formations.map((f) => (
+        {formations.map((f) => (
           <FormationCard key={f.degree + f.years} formation={f} />
         ))}
       </div>
