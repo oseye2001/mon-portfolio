@@ -1,90 +1,167 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { Menu, X, Globe } from "lucide-react";
-import { motion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageProvider";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { fr } from "@/locales/fr";
+import { en } from "@/locales/en";
+type Lang = "fr" | "en";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
+  const [lang, setLang] = useState<Lang>("fr");
 
-  const links = [
-    { href: "#hero", label: t.nav.home },
-    { href: "#skills", label: t.nav.skills },
-    { href: "#formations", label: t.nav.formations },
-    { href: "#projects", label: t.nav.projects },
-    { href: "#contact", label: t.nav.contact },
-  ];
+  // Init from localStorage
+  useEffect(() => {
+    const saved = (typeof window !== "undefined" && localStorage.getItem("lang")) as Lang | null;
+    const initial = saved === "en" || saved === "fr" ? saved : "fr";
+    setLang(initial);
+    if (typeof document !== "undefined") document.documentElement.lang = initial;
+  }, []);
+
+  // Persist + notify others
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("lang", lang);
+      document.documentElement.lang = lang;
+      window.dispatchEvent(new CustomEvent("app:language-changed", { detail: { lang } }));
+    }
+  }, [lang]);
+
+  const isEN = lang === "en";
+
+  const T = useMemo(
+    () =>
+      isEN
+        ? {
+            brand: "El hadji Ousmane",
+            links: [
+              { href: "#hero", label: "Home" },
+              { href: "#skills", label: "Skills" },
+              { href: "#formations", label: "Education" },
+              { href: "#projects", label: "Projects" },
+              { href: "#contact", label: "Contact" },
+            ],
+            switchAria: "Switch to French",
+            left: "FR",
+            right: "EN",
+          }
+        : {
+            brand: "El hadji Ousmane",
+            links: [
+              { href: "#hero", label: "Accueil" },
+              { href: "#skills", label: "Compétences" },
+              { href: "#formations", label: "Formations" },
+              { href: "#projects", label: "Projets" },
+              { href: "#contact", label: "Contact" },
+            ],
+            switchAria: "Basculer en anglais",
+            left: "FR",
+            right: "EN",
+          },
+    [isEN]
+  );
+
+  const toggleLang = () => setLang(isEN ? "fr" : "en");
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-white/80 border-b border-slate-200 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-slate-900/70 border-b border-white/10">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        {/* Logo / nom */}
         <Link
           href="#hero"
-          className="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent"
+          className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent"
         >
-          El hadji Ousmane 
+          {T.brand}
         </Link>
 
-        <div className="flex items-center gap-4">
-          {/* Desktop links */}
-          <ul className="hidden gap-6 md:flex">
-            {links.map(({ href, label }) => (
+        {/* Desktop */}
+        <div className="hidden md:flex items-center gap-6">
+          <ul className="flex gap-6">
+            {T.links.map(({ href, label }) => (
               <li key={href}>
-                <Link
-                  href={href}
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors font-medium"
-                >
+                <Link href={href} className="text-sm text-gray-300 hover:text-indigo-400 transition-colors">
                   {label}
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* Language selector */}
+          {/* FR/EN pill */}
           <button
-            onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors text-sm font-medium text-slate-700"
-            aria-label="Change language"
+            type="button"
+            onClick={toggleLang}
+            aria-label={T.switchAria}
+            className="inline-flex items-center rounded-full p-1 text-xs font-semibold transition shadow ring-1
+                       bg-white/90 text-slate-800 ring-slate-200 hover:bg-white"
           >
-            <Globe className="w-4 h-4" />
-            <span className="uppercase">{language}</span>
-          </button>
-
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden rounded-lg p-2 hover:bg-slate-100 transition-colors"
-            aria-label="Menu mobile"
-          >
-            {open ? <X className="h-6 w-6 text-blue-600" /> : <Menu className="h-6 w-6 text-blue-600" />}
+            <span className={`px-2.5 py-1 rounded-full ${!isEN ? "bg-indigo-600 text-white" : "text-slate-700"}`}>
+              {T.left}
+            </span>
+            <span className="px-1">/</span>
+            <span className={`px-2.5 py-1 rounded-full ${isEN ? "bg-indigo-600 text-white" : "text-slate-700"}`}>
+              {T.right}
+            </span>
           </button>
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="md:hidden rounded-lg p-2 hover:bg-white/10 transition-colors"
+          aria-label="Menu mobile"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+        >
+          {open ? <X className="h-6 w-6 text-indigo-400" /> : <Menu className="h-6 w-6 text-indigo-400" />}
+        </button>
       </div>
 
       {/* Mobile panel */}
-      {open && (
-        <motion.ul
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="md:hidden flex flex-col gap-4 px-6 pb-6 pt-2 bg-white border-b border-slate-200"
-        >
-          {links.map(({ href, label }) => (
-            <li key={href}>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id="mobile-nav"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden bg-slate-900/95 px-6 pb-6 pt-2 flex flex-col gap-4"
+          >
+            {T.links.map(({ href, label }) => (
               <Link
+                key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="block text-slate-600 hover:text-blue-600 transition-colors font-medium"
+                className="text-gray-300 hover:text-indigo-400 transition-colors"
               >
                 {label}
               </Link>
-            </li>
-          ))}
-        </motion.ul>
-      )}
+            ))}
+
+            {/* FR/EN in mobile */}
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  toggleLang();
+                  setOpen(false);
+                }}
+                aria-label={T.switchAria}
+                className="inline-flex items-center rounded-full p-1 text-xs font-semibold transition shadow ring-1
+                           bg-white/90 text-slate-800 ring-slate-200 hover:bg-white"
+              >
+                <span className={`px-2.5 py-1 rounded-full ${!isEN ? "bg-indigo-600 text-white" : "text-slate-700"}`}>
+                  {T.left}
+                </span>
+                <span className="px-1">/</span>
+                <span className={`px-2.5 py-1 rounded-full ${isEN ? "bg-indigo-600 text-white" : "text-slate-700"}`}>
+                  {T.right}
+                </span>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
