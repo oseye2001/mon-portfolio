@@ -1,13 +1,11 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react"; // ⬅️ useMemo retiré
 import { motion } from "framer-motion";
 import { ArrowDownCircle } from "lucide-react";
 import Link from "next/link";
 
-import { fr } from "@/locales/fr";
-import { en } from "@/locales/en";
-
 type Lang = "fr" | "en";
+
 
 export default function Hero() {
   const [lang, setLang] = useState<Lang>("fr");
@@ -35,10 +33,7 @@ export default function Hero() {
 
   const isEN = lang === "en";
 
-  // Locales disponibles (si besoin pour d'autres sections)
-  const t = useMemo(() => (isEN ? en : fr), [isEN]);
-
-  // ✅ TES textes EXACTS conservés pour le Hero
+  // ✅ Textes du Hero (conservés tels quels)
   const texts = isEN
     ? {
         title: "El Hadji Ousmane Seye",
@@ -140,11 +135,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Indicateur de scroll */}
-      <motion.div
-        className="mt-10"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      >
+      <motion.div className="mt-10" animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
         <Link href="#projects" aria-label={texts.ariaScroll}>
           <ArrowDownCircle className="w-10 h-10 text-indigo-500 hover:text-pink-500 transition-colors cursor-pointer" />
         </Link>
