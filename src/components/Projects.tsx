@@ -2,11 +2,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { fr } from "@/locales/fr";
 import { en } from "@/locales/en";
-import ProjectCard, { Project, ProjectsDict } from "./ProjectCard";
+import ProjectCard, { type Project } from "@/components/ProjectCard";
 
 type Lang = "fr" | "en";
 
-type ProjectLocale = {
+// Type pour les objets projets venant des locales
+type LocalizedProject = {
   title: string;
   organization: string;
   tags?: string[];
@@ -18,11 +19,10 @@ type ProjectLocale = {
   status?: string;
 };
 
-type ProjectsSection = ProjectsDict & { projects: ProjectLocale[] };
-
 export default function Projects() {
   const [lang, setLang] = useState<Lang>("fr");
 
+  // Lire langue au montage
   useEffect(() => {
     const saved = (typeof window !== "undefined" && localStorage.getItem("lang")) as Lang | null;
     const initial = saved === "en" || saved === "fr" ? saved : "fr";
@@ -30,6 +30,7 @@ export default function Projects() {
     if (typeof document !== "undefined") document.documentElement.lang = initial;
   }, []);
 
+  // Écouter Navbar (événement global)
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail as { lang?: Lang } | undefined;
@@ -42,13 +43,12 @@ export default function Projects() {
     return () => window.removeEventListener("app:language-changed", handler as EventListener);
   }, []);
 
-  // ✅ ICI on utilise bien `t`, donc plus d’erreur "assigned but never used"
   const t = useMemo(() => (lang === "en" ? en : fr), [lang]);
-  const dict = t.projects as ProjectsSection;
+  const dict = t.projects;
 
   const projects: Project[] = useMemo(
     () =>
-      (dict.projects || []).map((p: ProjectLocale) => ({
+      (t.projects.projects || []).map((p: LocalizedProject) => ({
         title: p.title,
         organization: p.organization,
         tags: p.tags ?? [],
@@ -59,7 +59,7 @@ export default function Projects() {
         technologies: p.technologies ?? [],
         status: p.status,
       })),
-    [dict]
+    [t]
   );
 
   return (
