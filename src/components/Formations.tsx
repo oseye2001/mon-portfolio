@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { fr } from "@/locales/fr";
 import { en, type Translations } from "@/locales/en"; // <-- on récupère le type
-import { getLang, onLangChange } from "@/lib/lang";   // <-- source unique
+import { getLang, onLangChange } from "../lib/lang";  // <-- source unique
 
 type Lang = "fr" | "en";
 
