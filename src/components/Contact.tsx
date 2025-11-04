@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { fr } from "@/locales/fr";
 import { en } from "@/locales/en";
-import { getLang, onLangChange } from "@/lib/lang"; // <-- NEW
+import { getLang, onLangChange } from "../lib/lang"; // <-- NEW
 
 type Lang = "fr" | "en";
 
