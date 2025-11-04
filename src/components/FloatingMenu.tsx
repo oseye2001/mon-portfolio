@@ -30,7 +30,7 @@ export default function FloatingMenu() {
             <Link
               href={item.href}
               onClick={() => toggleOpen(0)} // referme le menu après clic
-              className="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg"
+              className="w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center shadow-lg"
             >
               <Icon className="w-5 h-5" />
             </Link>
@@ -41,7 +41,7 @@ export default function FloatingMenu() {
       {/* FAB principal */}
       <motion.button
         aria-label="Ouvrir le menu"
-        className="w-14 h-14 rounded-full bg-violet-600 text-white flex items-center justify-center shadow-2xl hover:bg-violet-700 transition-colors"
+        className="w-14 h-14 rounded-full bg-pink-600 text-white flex items-center justify-center shadow-2xl"
         onClick={() => toggleOpen()}
         animate={open ? { rotate: 45 } : { rotate: 0 }}
         transition={{ type: "spring", stiffness: 400, damping: 20 }}
