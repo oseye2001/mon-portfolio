@@ -8,7 +8,7 @@ export const fr = {
   },
   hero: {
     title: "El hadji ousmane seye",
-    subtitle: "Developpeur full stack",
+    subtitle: "Junior Developpeur full stack",
     description: "Développeur Full-Stack débutant, motivé et passionné par le développement web, je conçois mes premiers projets afin de renforcer mes compétences du Front-End au Back-End.",
   },
   skills: {
