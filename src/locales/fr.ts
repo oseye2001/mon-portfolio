@@ -48,7 +48,7 @@ export const fr = {
         "VS Code",
         "Postman",
         "Figma (UI/maquettes)",
-        "Linux / Shell (notions)",
+        "Linux / Shell ",
       ],
       softSkills: [
         "Esprit analytique & résolution de problèmes",
