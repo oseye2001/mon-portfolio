@@ -25,7 +25,7 @@ export const fr = {
         "Conception et développement logiciel",
         "Analyse de systèmes d'information",
       ],
-     fullstack : [
+     fullStack : [
        "HTML5, CSS3, JavaScript (ES6+)",
       "TypeScript ",
        "Node.js & Express",
