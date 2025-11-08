@@ -25,12 +25,17 @@ export const fr = {
         "Conception et développement logiciel",
         "Analyse de systèmes d'information",
       ],
-      fullStack: [
-        "HTML5, CSS3, JavaScript",
-        "Node.js & Express (bases)",
-        "APIs REST",
-        "MySQL / MongoDB",
-        "React (initiation)",
+     full stack : [
+       "HTML5, CSS3, JavaScript (ES6+)",
+      "TypeScript (bases)",
+       "Node.js & Express",
+  "APIs REST & GraphQL",
+  "MySQL / MongoDB",
+  "React & Next.js (bases)",
+  "Tailwind CSS / Bootstrap",
+  "JSON Web Tokens (JWT) & Auth",
+  "CRUD Apps & API Integration",
+  "Deployment (Vercel, Render, Netlify)"
       ],
       systems: [
         "Architecture & organisation des ordinateurs (Assembleur)",
@@ -65,7 +70,7 @@ export const fr = {
         years: "2022-2025",
         focus: "Développement logiciel & Informatique appliquée",
         courses: [
-          "Programmation (C++, Java)",
+          "Programmation (C++, Java,Python,typeScript,JavaScript,SQL)",
           "Algorithmique & algorithmes avancés",
           "Développement de logiciels",
           "Bases de données",
