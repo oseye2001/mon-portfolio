@@ -35,7 +35,7 @@ export const fr = {
   "Tailwind CSS / Bootstrap",
   "JSON Web Tokens (JWT) & Auth",
   "CRUD Apps & API Integration",
-  "Deployment (Vercel, Render, Netlify)"
+  "Deployment (Vercel, Render, Netlify)",
       ],
       systems: [
         "Architecture & organisation des ordinateurs (Assembleur)",
