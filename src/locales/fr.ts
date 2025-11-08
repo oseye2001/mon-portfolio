@@ -27,11 +27,11 @@ export const fr = {
       ],
      full stack : [
        "HTML5, CSS3, JavaScript (ES6+)",
-      "TypeScript (bases)",
+      "TypeScript ",
        "Node.js & Express",
   "APIs REST & GraphQL",
   "MySQL / MongoDB",
-  "React & Next.js (bases)",
+  "React & Next.js ",
   "Tailwind CSS / Bootstrap",
   "JSON Web Tokens (JWT) & Auth",
   "CRUD Apps & API Integration",
